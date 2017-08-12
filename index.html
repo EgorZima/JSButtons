@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="https://bootswatch.com/simplex/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel='stylesheet' href='css/spectrum.css' />
+</head>
+<body>
+
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+            <a href="#" class="navbar-brand">JSButtons</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="container">
+            <div class="sidebar">
+                <h3> Buttons </h3>
+                <ul class="side-menu">
+                    <li class="first hide" > 
+                        <a id="1"  href="#" class="menu-a" draggable="true"> 
+                        <i class="fa fa-check-square-o icon" aria-hidden="true"></i>
+                        <span class="buttonName">SAVE</span>
+                        </a> 
+                    </li>
+
+                    <li class="second hide" > 
+                        <a id="2" href="#" class="menu-a" draggable="true"> 
+                        <i class="fa fa-trash-o icon" aria-hidden="true"></i>
+                        <span class="buttonName">DELETE</span>
+                        </a> 
+                    </li>
+
+                    <li class="third hide"> 
+                        <a id="3" href="#" class="menu-a" draggable="true"> 
+                        <i class="fa fa-paper-plane icon" aria-hidden="true"></i> 
+                        <span class="buttonName">SEND</span>
+                        </a> 
+                    </li>
+
+                    <li class="fourth hide"> 
+                        <a id="4" href="#" class="menu-a" draggable="true"> 
+                        <i class="fa fa-credit-card icon" aria-hidden="true"></i>
+                        <span class="buttonName">BUY</span>
+                        </a> 
+                    </li>
+
+                    <li class="fifth hide"> 
+                        <a id="5" href="#" class="menu-a" draggable="true"> 
+                        <i class="fa fa-commenting-o icon" aria-hidden="true"></i>
+                        <span class="buttonName">ADD REVIEW</span>
+                        </a> 
+                    </li>
+
+                    <li class="sixth hide"> 
+                        <a id="6" href="#" class="menu-a" draggable="true"> 
+                        <i class="fa fa-phone icon" aria-hidden="true"></i>
+                        <span class="buttonName">ORDER A CALL</span>
+                        </a> 
+                    </li>
+
+                    <li class="seventh hide"> 
+                        <a id="7" href="#" class="menu-a" draggable="true"> 
+                        <i class="fa fa-list icon" aria-hidden="true"></i>
+                        <span class="buttonName">TO CATALOG</span>
+                        </a> 
+                    </li>
+                </ul>
+            </div>
+
+            <div class="work-block">
+                <ul class="actions-menu hide">
+                    <li> <a href="#" class="changeText"> CHANGE TEXT </a> </li>
+                    <li> <a href="#" id="preferredHex"> CHANGE BACKGROUND </a> </li>
+                    <li> <a href="#" id="preferredHexTwo"> CHANGE ICON'S COLOR </a> </li>
+                    <li> <a href="#" class="cnahgeFontSize"> CHANGE FONT SIZE
+                            <div class="font-size-form hide">
+                                <input type="text" value="" placeholder="from 10 to 30" class="edit-size"> 
+                                <button class="save-size-button"> SAVE </button>
+                            </div>
+
+                            <div class="alert hide">
+                                 <span> </span>
+                            </div>
+                         </a> 
+                    </li>
+                </ul>
+
+                <div class="button"></div>
+                <div class="edit-form hide">
+                    <input type="text" value="" placeholder="" class="edit-input"> 
+                    <button class="edit-button"> SAVE </button>
+                    <div class="text-alert hide"> MAX LENGTH IS 14 </div>
+                </div>
+               
+                
+                <ul class="actions-menu-two hide">
+                    <li> <a href="#" class="toggleIcon"> TOGGLE ICON </a> </li>
+                    <li> <a href="#" id="preferredHexThree"> CHANGE TEXT COLOR </a> </li>
+                    <li> <a href="#" class="changeButtonSize"> <span> BUTTON SIZE </span>
+                            <div class="sizes hide">
+                                <span class="button-size small"> small </span>
+                                <span class="button-size middle"> middle </span>
+                                <span class="button-size large"> large </span>
+                            </div>
+                        </a> 
+                    </li>
+                     <li> <a href="#" class="addLink"> ADD LINK 
+                            <div class="add-link hide">
+                                <input type="text" value="" placeholder="add url, please" class="edit-url"> 
+                                <button class="save-link-button"> ADD </button>
+                            </div>
+
+                            <div class="url-alert hide" >
+                                 <span> Incorrect url. Please, check your adress</span>
+                            </div>
+                        </a> 
+                    </li>
+                </ul>
+
+                <div class="actions">
+                    <input class="cancel" type="submit" value="CANCEL">
+                    <input class="save" type="submit" value="SAVE">
+                </div>
+            </div>
+        </div>
+    </div>
+      
+
+<script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="js/main.js"> </script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='js/spectrum.js'></script>
+
+<script>
+let buttons = new Buttons();
+
+$("#preferredHex").spectrum({
+    preferredFormat: "hex",
+    showInput: true,
+    showPalette: true,
+    palette: [["red", "rgba(0, 255, 0, .5)", "rgb(0, 0, 255)"]]
+})
+
+$("#preferredHexTwo").spectrum({
+    preferredFormat: "hex",
+    showInput: true,
+    showPalette: true,
+    palette: [["red", "rgba(0, 255, 0, .5)", "rgb(0, 0, 255)"]]
+})
+
+$("#preferredHexThree").spectrum({
+    preferredFormat: "hex",
+    showInput: true,
+    showPalette: true,
+    palette: [["red", "rgba(0, 255, 0, .5)", "rgb(0, 0, 255)"]]
+})
+
+</script>
+</body>
+</html>
