@@ -1,10 +1,11 @@
 let a = document.querySelectorAll('ul li');
 
-a.forEach((i, a) => {
+a.forEach((i, index) => {
 	setTimeout(() => {
 		i.classList.remove('hide');
-	}, (a * 1) * 200);
+	}, (index * 1) * 200);
 });
+
 
 class Buttons {
 	constructor() {
@@ -31,7 +32,9 @@ class Buttons {
 		this.links = document.querySelectorAll('.menu-a');
 		this.minSize;
 		this.maxSize;
+		this.openAs = document.querySelectorAll('.open-as');
 
+		
 		this.sideBar.addEventListener('click', (e) => {
 			this.choseButton(e);
 		})
@@ -73,10 +76,8 @@ class Buttons {
 		});
 		this.addLink.addEventListener('click', () => {
 			this.addUrl();
-		})
-		this.saveUrlButton.addEventListener('click', () => {
-			this.saveUrl()
-		})
+		});
+
 		this.render();
 	}
 
@@ -86,6 +87,13 @@ class Buttons {
 				this.drag(e)
 			})
 		}
+
+		for (let i = 0; i <this.openAs.length; i++) {
+			this.openAs[i].addEventListener('click', (e) => {
+				this.saveUrl(e)
+			})
+		}
+		
 	}
 
 	choseButton(e) {
@@ -133,13 +141,17 @@ class Buttons {
 		this.workSpace.classList.add('shadow');
 		this.actionsMenu.classList.remove('hide');
 		this.actionsMenuTwo.classList.remove('hide');
-		this.previeousStyle = e.target.parentNode.cloneNode(true);
 		this.button.style['background'] = '#fcfbeb';
 		var data = e.dataTransfer.getData("text");
 		this.button.appendChild(document.getElementById(data).parentNode);
+		console.log( e.target.children)
+		this.previeousStyle = e.target.children[0].cloneNode(true);
 	}
 
 	editText() {
+		document.querySelector('.font-size-form').classList.add('hide');
+		document.querySelector('.add-link').classList.add('hide');
+
 		let form = document.querySelector('.edit-form');
 		form.classList.remove('hide');
 
@@ -174,14 +186,9 @@ class Buttons {
 			return
 		};
 
-		let currentButton = document.querySelector('.button').children[0];
+		let currentButton = this.button.children[0];
 		this.workSpace.classList.remove('shadow')
 		let button = this.button;
-
-		button.style['width'] = 500 + 'px';
-		button.style['height'] = 82 + 'px';
-		button.style['left'] = 214 + 'px';
-		button.style['top'] = 196 + 'px';
 
 		let form = document.querySelector('.edit-form');
 		form.classList.add('hide');
@@ -198,18 +205,13 @@ class Buttons {
 
 		let button = this.button;
 
-		button.style['width'] = 500 + 'px';
-		button.style['height'] = 82 + 'px';
-		button.style['left'] = 224 + 'px';
-		button.style['top'] = 196 + 'px';
-
 		let form = document.querySelector('.edit-form');
 		form.classList.add('hide');
 
 		this.workSpace.classList.remove('shadow')
 		this.actionsMenu.classList.add('hide');
 		this.actionsMenuTwo.classList.add('hide');
-
+		console.log(this.previeousStyle)
 		document.querySelector('.sizes').classList.add('hide')
 		this.sideBar.appendChild(this.previeousStyle);
 		this.workSpace.querySelector('.button').innerHTML = '';
@@ -226,7 +228,7 @@ class Buttons {
 			button.style['width'] = 180 + 'px';
 			button.style['height'] = 42 + 'px';
 			button.style['left'] = 380 + 'px';
-			button.style['top'] = 220 + 'px';
+			button.style['top'] = 174 + 'px';
 
 			li.style['width'] = 180 + 'px';
 			li.style['height'] = 42 + 'px';
@@ -247,7 +249,7 @@ class Buttons {
 			button.style['width'] = 270 + 'px';
 			button.style['height'] = 60 + 'px';
 			button.style['left'] = 330 + 'px';
-			button.style['top'] = 210 + 'px';
+			button.style['top'] = 164 + 'px';
 
 			li.style['width'] = 270 + 'px';
 			li.style['height'] = 60 + 'px';
@@ -264,15 +266,15 @@ class Buttons {
 		}
 		if (size === 'large') {
 			button.style['width'] = 500 + 'px';
-			button.style['height'] = 80 + 'px';
+			button.style['height'] = 74 + 'px';
 			button.style['left'] = 214 + 'px';
-			button.style['top'] = 196 + 'px';
+			button.style['top'] = 160 + 'px';
 
 			li.style['width'] = 100 + '%';
-			li.style['height'] = 80 + 'px';
+			li.style['height'] = 74 + 'px';
 
-			a.style['padding-top'] = 22 + 'px'
-			a.style['padding-bottom'] = 22 + 'px';
+			a.style['padding-top'] = 18 + 'px'
+			a.style['padding-bottom'] = 18 + 'px';
 
 			span.style['font-size'] = 20 + 'px';
 
@@ -285,6 +287,15 @@ class Buttons {
 	}
 
 	changeTextFontSize() {
+		document.querySelector('.add-link').classList.add('hide');
+		document.querySelector('.edit-form').classList.add('hide');
+
+		 this.openAs.forEach( (i, index) => {
+			setTimeout(() => {
+				i.classList.add('hide');
+			}, (index * 0.5) * 120);
+		})
+
 		let width = getComputedStyle(this.button, null).width;
 
 		if (width === '270px') {
@@ -339,11 +350,21 @@ class Buttons {
 	}
 
 	addUrl() {
+		document.querySelector('.font-size-form').classList.add('hide');
+		document.querySelector('.edit-form').classList.add('hide');
+
 		let div = document.querySelector('.add-link')
 		div.classList.remove('hide');
+
+		this.openAs.forEach( (i, index) => {
+			setTimeout(() => {
+				i.classList.remove('hide');
+			}, (index * 0.5) * 100);
+		})
+		
 	}
 
-	saveUrl() {
+	saveUrl(e) {
 		if (!document.querySelector('.edit-url').value.length) {
 			document.querySelector('.url-alert').classList.remove('hide');
 
@@ -353,27 +374,58 @@ class Buttons {
 			return
 		}
 
-		let link = document.querySelector('.edit-url').value;
+		let type = e.target.classList[0];
+		let value = document.querySelector('.edit-url').value;
 
-		if (link.substring(0.7) === 'http://' || link.substring(0.8) === 'https://') {
-			document.querySelector('.edit-url').value = '';
+		if (type === 'page') {
+			let url = this.checkUrl(value);
+			this.button.querySelector('a').href = '';
+			this.button.querySelector('a').href = url;
+			return;
+		}
+
+		if (type === 'tab') {
+			let url = this.checkUrl(value);
 			this.button.querySelector('a').addEventListener('click', () => {
-				window.open(link, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=100,width=400,height=400")
+				window.open(url,'_blank')
 			})
-			setTimeout( () => {
-				document.querySelector('.add-link').classList.add('hide');
-			}, 100)
-			return
+			return;
+		}
+
+		if (type === 'window') {
+			let url = this.checkUrl(value);
+			this.button.querySelector('a').addEventListener('click', () => {
+		 		window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=100,width=400,height=400")
+		 	})
+			return;
+		}
+	}
+
+	checkUrl(value) {
+		let link = value;
+
+		if (link.substring(0,7) === 'http://' || link.substring(0,8) === 'https://') {
+			return link;
+			
+			this.urlHide()
+		 	return;
 		}
 
 		let url = 'http://' + link;
-		document.querySelector('.edit-url').value = '';
-		this.button.querySelector('a').addEventListener('click', () => {
-			window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=100,width=400,height=400")
-		})
-    
-		setTimeout( () => {
-			document.querySelector('.add-link').classList.add('hide');
-		}, 100)
+		this.urlHide()
+		return url
 	}
+
+	urlHide() {
+		 document.querySelector('.edit-url').value = '';
+		 document.querySelector('.add-link').classList.add('hide');
+
+		 this.openAs.forEach( (i, index) => {
+			setTimeout(() => {
+				i.classList.add('hide');
+			}, (index * 0.5) * 120);
+		})
+	}
+
+
 }
